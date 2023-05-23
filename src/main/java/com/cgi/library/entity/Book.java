@@ -1,6 +1,8 @@
 package com.cgi.library.entity;
 
 import com.cgi.library.model.BookStatus;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "book")
 public class Book {
@@ -52,91 +56,4 @@ public class Book {
     @OneToMany(mappedBy = "borrowedBook")
     private List<CheckOut> checkOuts = new ArrayList<>();
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public LocalDate getAdded() {
-        return added;
-    }
-
-    public void setAdded(LocalDate added) {
-        this.added = added;
-    }
-
-    public Integer getCheckOutCount() {
-        return checkOutCount;
-    }
-
-    public void setCheckOutCount(Integer checkOutCount) {
-        this.checkOutCount = checkOutCount;
-    }
-
-    public BookStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(BookStatus status) {
-        this.status = status;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public List<CheckOut> getCheckOuts() {
-        return checkOuts;
-    }
-
-    public void setCheckOuts(List<CheckOut> checkOuts) {
-        this.checkOuts = checkOuts;
-    }
 }

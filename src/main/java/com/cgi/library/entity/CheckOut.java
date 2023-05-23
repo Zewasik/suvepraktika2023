@@ -1,5 +1,7 @@
 package com.cgi.library.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -7,6 +9,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "checkout")
 public class CheckOut {
@@ -38,59 +42,4 @@ public class CheckOut {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnedDate;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getBorrowerFirstName() {
-        return borrowerFirstName;
-    }
-
-    public void setBorrowerFirstName(String borrowerFirstName) {
-        this.borrowerFirstName = borrowerFirstName;
-    }
-
-    public String getBorrowerLastName() {
-        return borrowerLastName;
-    }
-
-    public void setBorrowerLastName(String borrowerLastName) {
-        this.borrowerLastName = borrowerLastName;
-    }
-
-    public Book getBorrowedBook() {
-        return borrowedBook;
-    }
-
-    public void setBorrowedBook(Book borrowedBook) {
-        this.borrowedBook = borrowedBook;
-    }
-
-    public LocalDate getCheckedOutDate() {
-        return checkedOutDate;
-    }
-
-    public void setCheckedOutDate(LocalDate checkedOutDate) {
-        this.checkedOutDate = checkedOutDate;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public LocalDate getReturnedDate() {
-        return returnedDate;
-    }
-
-    public void setReturnedDate(LocalDate returnedDate) {
-        this.returnedDate = returnedDate;
-    }
 }

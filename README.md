@@ -25,50 +25,84 @@ To get Angular app up and running you need to:
 4. Install all dependencies with npm `npm install`. NB: This might take a while.
 5. Start the development server `npm run start`.
    Frontend runs on port 4200, so make sure it's not in use.
-   
+
    First build takes a lot of time, so be patient...
 
    ![Compiling](https://imgs.xkcd.com/comics/compiling.png)
-6. Once development server is running, open app at http://localhost:4200. If you can see a list of books then it means that you have sucessfully set up and run the application
+6. Once development server is running, open app at http://localhost:4200. If you can see a list of books then it means
+   that you have sucessfully set up and run the application
 7. Start coding :)
 
 ##General guidelines
 
 * Tasks don't have to be completed in order.
-* Try to complete as many as possible. 
-* You are free to modify both front-end and back-end as you deem necessary. This includes the option to use another front-end framework if you wish.
-* Regarding UI design, you are also free to choose: use Material Design components, your favorite library or implement everything yourself.
+* Try to complete as many as possible.
+* You are free to modify both front-end and back-end as you deem necessary. This includes the option to use another
+  front-end framework if you wish.
+* Regarding UI design, you are also free to choose: use Material Design components, your favorite library or implement
+  everything yourself.
 * You can and are encouraged to also implement additional cool features that you think would
-really help showcase and distinguish your skills.
+  really help showcase and distinguish your skills.
 
 * We appreciate if you use version control and commit often, so we can also get an insight into your
-workflow and how you approached the problems. 
+  workflow and how you approached the problems.
 
-* Please document your added functionality, it would be helpful if you point out what was easy / difficult / interesting etc
-
-* If you are using in your solution code written by other people 
-(examples, tutorials, StackOverflow etc), then please cite the source for these blocks
-in your solution using comments. This helps us distinguish code written by you.
+* Please document your added functionality, it would be helpful if you point out what was easy / difficult / interesting
+  etc
+  e back-end changes)
+* If you are using in your solution code written by other people
+  (examples, tutorials, StackOverflow etc), then please cite the source for these blocks
+  in your solution using comments. This helps us distinguish code written by you.
 
 If you have any questions, please reach out without hesitation. Best of luck!
 
 ##Development tasks
 
 * Using backend api endpoint /getBooks, implement table of books view
-* Using backend api endpoint /getCheckouts, also implement the checkouts view. Suppport paging and sorting for both views
+* Using backend api endpoint /getCheckouts, also implement the checkouts view. Suppport paging and sorting for both
+  views
 * Implement individual book and checkout view, support basic CRUD operations, implement checking out and returning books
 * Implement searching for books using freetext criteria
 * Implement filtering for books by status
-* Implement saving / displaying favorite books for current user (you can use localStorage if you don't want to make back-end changes)
+* Implement saving / displaying favorite books for current user (you can use localStorage if you don't want to make
+  back-end changes)
 * Add modal confirmation dialogues when deleting or checking out books
 * Implement a user-friendly way to display late checkouts
 
 #####Bonus tasks:
-* Implement advanced search form for books, where user can specify and combine different criterias (title, author year etc)
-* Add UI and backend tests 
+
+* Implement advanced search form for books, where user can specify and combine different criterias (title, author year
+  etc)
+* Add UI and backend tests
 * Add support for multiple languages
 * Add support for multiple users and different user roles: reader and librarian.
-Reader should not be able to add / modify / delete existing book information or tamper with checkouts
-but should be able to save favorites and check out / return books (that they have checked out)
+  Reader should not be able to add / modify / delete existing book information or tamper with checkouts
+  but should be able to save favorites and check out / return books (that they have checked out)
 * Containerize your application to make it cloud-native
 
+## Front-end
+
+1. Using backend api endpoint /getBooks, implement table of books view
+2. Using backend api endpoint /getCheckouts, also implement the checkouts view. Support paging and sorting for both
+   views
+3. Implement individual book and checkout view, support basic CRUD operations, implement checking out and returning
+   books
+4. Implement searching for books using freetext criteria
+5. Implement filtering for books by status
+6. Implement saving / displaying favorite books for current user
+7. Add modal confirmation dialogues when deleting or checking out books
+8. Implement a user-friendly way to display late checkouts
+9. Implement advanced search form for books, where user can specify and combine different criterias (title, author year
+   etc)
+10. Add UI and backend tests
+11. Add support for multiple users and different user roles: reader and librarian.
+
+## Back-end
+
+- [x] Implement filtering for books by status
+- [ ] Implement saving / displaying favorite books for current user!!!
+- [x] Implement advanced search form for books, where user can specify and combine different criterias (title, author
+  year etc)
+- [ ] Add support for multiple users and different user roles: reader and librarian.
+- [ ] Add UI and backend tests
+- [ ] Containerize your application to make it cloud-native
