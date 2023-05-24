@@ -4,7 +4,6 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class SpecificationBuilder<T> {
     private ArrayList<Specification<T>> specs;

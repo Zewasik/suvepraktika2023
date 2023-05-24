@@ -103,6 +103,6 @@ If you have any questions, please reach out without hesitation. Best of luck!
 - [ ] Implement saving / displaying favorite books for current user!!!
 - [x] Implement advanced search form for books, where user can specify and combine different criterias (title, author
   year etc)
-- [ ] Add support for multiple users and different user roles: reader and librarian.
+- [X] Add support for multiple users and different user roles: reader and librarian.
 - [ ] Add UI and backend tests
 - [ ] Containerize your application to make it cloud-native
