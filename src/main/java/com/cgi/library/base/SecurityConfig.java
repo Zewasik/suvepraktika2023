@@ -3,6 +3,7 @@ package com.cgi.library.base;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,6 +26,7 @@ public class SecurityConfig {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "**").permitAll()
                 .antMatchers("/api/book/saveBook", "/api/book/deleteBook", "/api/book/updateBook").hasAuthority("LIBRARIAN")
                 .anyRequest().authenticated()
                 .and()

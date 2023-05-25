@@ -28,8 +28,19 @@ public class BookController {
             @RequestParam(value = "genre", required = false) String genre,
             @RequestParam(value = "page", required = false) Integer page,
             @RequestParam(value = "size", required = false) Integer size,
+//            @RequestParam(value = "sort", required = false) String sort,
+//            @RequestParam(value = "order", required = false) String order,
             @RequestParam(value = "filter", required = false) BookStatus filter) {
         PageRequest pr = PageRequest.of(page == null || page < 0 ? 0 : page, size == null || size < 1 ? 20 : size);
+//        if (sort != null) {
+//            Sort s = Sort.by(sort);
+//            if (order == "DESC") {
+//                s.descending();
+//            } else {
+//                s.ascending();
+//            }
+//            pr.withSort(s);
+//        }
         return ResponseEntity.ok(bookService.getBooks(pr, title, author, genre, year, filter));
     }
 

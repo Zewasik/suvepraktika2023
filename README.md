@@ -6,7 +6,7 @@ This is the project template which contains Angular front-end and Spring Boot ba
 ## Setting up Spring Boot application.
 
 1. Make sure you have installed Java. For development OpenJDK 11 from [Adoptium](https://adoptium.net/) should be used.
-2. Install Intellij IDEA Commmunity edition
+2. Install Intellij IDEA Community edition
 3. Import the Maven project
 4. Run the LibraryApplication from IDE.
 
@@ -17,92 +17,45 @@ your Java 11 installation in that case)
 
 ## Setting up Angular application.
 
-To get Angular app up and running you need to:
+To get React app up and running you need to:
 
 1. Make sure you have [NodeJS](https://nodejs.org/en/download/) version 18+ installed.
 2. Open the terminal.
 3. Navigate to frontend project `cd frontend/`
 4. Install all dependencies with npm `npm install`. NB: This might take a while.
-5. Start the development server `npm run start`.
-   Frontend runs on port 4200, so make sure it's not in use.
-
-   First build takes a lot of time, so be patient...
-
-   ![Compiling](https://imgs.xkcd.com/comics/compiling.png)
+5. Start the development server `npm start`.
 6. Once development server is running, open app at http://localhost:4200. If you can see a list of books then it means
-   that you have sucessfully set up and run the application
-7. Start coding :)
+   that you have successfully set up and run the application
 
-##General guidelines
+## Setting up PostgreSQL database
 
-* Tasks don't have to be completed in order.
-* Try to complete as many as possible.
-* You are free to modify both front-end and back-end as you deem necessary. This includes the option to use another
-  front-end framework if you wish.
-* Regarding UI design, you are also free to choose: use Material Design components, your favorite library or implement
-  everything yourself.
-* You can and are encouraged to also implement additional cool features that you think would
-  really help showcase and distinguish your skills.
+Database needs to be started before backend:
+1. Make sure you have [Docker](https://www.docker.com/) installed.
+2. Open new terminal in project root.
+3. Start docker-compose with `docker compose up`.
+4. After that you can use pgAdmin at http://localhost:5050 and start backend.
 
-* We appreciate if you use version control and commit often, so we can also get an insight into your
-  workflow and how you approached the problems.
+## Front-end features
 
-* Please document your added functionality, it would be helpful if you point out what was easy / difficult / interesting
-  etc
-  e back-end changes)
-* If you are using in your solution code written by other people
-  (examples, tutorials, StackOverflow etc), then please cite the source for these blocks
-  in your solution using comments. This helps us distinguish code written by you.
+- [x] Implement table of books view
+- [x] Implement the checkouts view. Support paging for both views
+- [ ] Support basic CRUD operations
+- [x] Implement searching for books using freetext criteria
+- [x] Implement filtering for books by status
+- [ ] Implement saving / displaying favorite books for current user
+- [ ] Add modal confirmation dialogues when deleting or checking out books
+- [ ] Implement a user-friendly way to display late checkouts
+- [ ] Implement advanced search form for books, where user can specify and combine different criterias (title, author year etc)
+- [ ] Add UI tests
+- [ ] Add support for multiple users and different user roles: reader and librarian.
 
-If you have any questions, please reach out without hesitation. Best of luck!
-
-##Development tasks
-
-* Using backend api endpoint /getBooks, implement table of books view
-* Using backend api endpoint /getCheckouts, also implement the checkouts view. Suppport paging and sorting for both
-  views
-* Implement individual book and checkout view, support basic CRUD operations, implement checking out and returning books
-* Implement searching for books using freetext criteria
-* Implement filtering for books by status
-* Implement saving / displaying favorite books for current user (you can use localStorage if you don't want to make
-  back-end changes)
-* Add modal confirmation dialogues when deleting or checking out books
-* Implement a user-friendly way to display late checkouts
-
-#####Bonus tasks:
-
-* Implement advanced search form for books, where user can specify and combine different criterias (title, author year
-  etc)
-* Add UI and backend tests
-* Add support for multiple languages
-* Add support for multiple users and different user roles: reader and librarian.
-  Reader should not be able to add / modify / delete existing book information or tamper with checkouts
-  but should be able to save favorites and check out / return books (that they have checked out)
-* Containerize your application to make it cloud-native
-
-## Front-end
-
-1. Using backend api endpoint /getBooks, implement table of books view
-2. Using backend api endpoint /getCheckouts, also implement the checkouts view. Support paging and sorting for both
-   views
-3. Implement individual book and checkout view, support basic CRUD operations, implement checking out and returning
-   books
-4. Implement searching for books using freetext criteria
-5. Implement filtering for books by status
-6. Implement saving / displaying favorite books for current user
-7. Add modal confirmation dialogues when deleting or checking out books
-8. Implement a user-friendly way to display late checkouts
-9. Implement advanced search form for books, where user can specify and combine different criterias (title, author year
-   etc)
-10. Add UI and backend tests
-11. Add support for multiple users and different user roles: reader and librarian.
-
-## Back-end
-
+## Back-end features
+- [x] Support basic CRUD operations
+- [x] Implement searching for books using freetext criteria
 - [x] Implement filtering for books by status
 - [ ] Implement saving / displaying favorite books for current user!!!
 - [x] Implement advanced search form for books, where user can specify and combine different criterias (title, author
   year etc)
 - [X] Add support for multiple users and different user roles: reader and librarian.
-- [ ] Add UI and backend tests
+- [ ] Add backend tests
 - [ ] Containerize your application to make it cloud-native
