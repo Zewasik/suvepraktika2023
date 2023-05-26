@@ -2,6 +2,8 @@ import { fetchHandler } from "../fetchHandler"
 import { Status } from '../../App'
 import "./login-registration.css"
 
+const BASE_URL = process.env.REACT_APP_HOSTNAME
+
 export interface LoginProp {
     setStatus: (arg: Status) => void
     changePage: () => void
@@ -16,7 +18,7 @@ export default function Login({ setStatus, changePage }: LoginProp) {
                     e.preventDefault()
 
                     const form = new FormData(e.currentTarget)
-                    fetchHandler(`http://localhost:8080/api/auth/login`, 'POST', { email: form.get("email"), password: form.get("password") })
+                    fetchHandler(`${BASE_URL}/api/auth/login`, 'POST', { email: form.get("email"), password: form.get("password") })
                         .then(r => r.json())
                         .then((r) => {
                             setStatus({ isLogged: true, role: "READER", token: r.token })

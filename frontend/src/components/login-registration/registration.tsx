@@ -2,6 +2,8 @@ import "./login-registration.css"
 import { LoginProp } from './login'
 import { fetchHandler } from "../fetchHandler"
 
+const BASE_URL = process.env.REACT_APP_HOSTNAME
+
 export default function Registration({ setStatus, changePage }: LoginProp) {
 
     return (
@@ -13,7 +15,7 @@ export default function Registration({ setStatus, changePage }: LoginProp) {
                         e.preventDefault()
 
                         const form = new FormData(e.currentTarget)
-                        fetchHandler(`http://localhost:8080/api/auth/register`, 'POST', { email: form.get("email"), password: form.get("password"), role: form.get("role") })
+                        fetchHandler(`${BASE_URL}/api/auth/register`, 'POST', { email: form.get("email"), password: form.get("password"), role: form.get("role") })
                             .then(r => r.json())
                             .then((r) => {
                                 setStatus({ isLogged: true, role: "READER", token: r.token })

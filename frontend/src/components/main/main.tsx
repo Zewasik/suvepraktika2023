@@ -5,6 +5,8 @@ import './main.css'
 import Table from "./table"
 import Filter from "./filter"
 
+const BASE_URL = process.env.REACT_APP_HOSTNAME
+
 export interface Book {
     added: string,
     author: string,
@@ -39,7 +41,7 @@ export interface PageParams {
     page: number
 }
 
-const deafultPageParams: PageParams = {
+const defaultPageParams: PageParams = {
     title: null,
     author: null,
     genre: null,
@@ -101,10 +103,10 @@ export default function Main({ status }: MainProp) {
         }
     }
 
-    const [pageParams, setPageParams] = useState<PageParams>(deafultPageParams)
+    const [pageParams, setPageParams] = useState<PageParams>(defaultPageParams)
 
     useEffect(() => {
-        fetchHandlerWithToken(`http://localhost:8080/api/${endpoint + getSearchParams(pageParams)}`, 'GET', token)
+        fetchHandlerWithToken(`${BASE_URL}/api/${endpoint + getSearchParams(pageParams)}`, 'GET', token)
             .then(r => r.json())
             .then((r) => {
                 if (endpoint.includes(api.getBooks)) {
@@ -172,7 +174,7 @@ export default function Main({ status }: MainProp) {
                         type="button"
                         className="button switch-button"
                         onClick={() => {
-                            setPageParams(deafultPageParams)
+                            setPageParams(defaultPageParams)
                             changeEndpoint()
                         }
                         }
