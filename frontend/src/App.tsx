@@ -1,31 +1,29 @@
-import { useState } from "react";
-import Login from "./components/login-registration/login";
-import Registration from "./components/login-registration/registration";
-import Main from "./components/main/main";
+import Login from "./components/auth/login";
+import Registration from "./components/auth/registration";
+import Books from "./components/books/books";
+import Checkouts from "./components/checkouts/checkouts";
 import './constants.css'
 import React from "react";
-
-const defaultStatus = { isLogged: false, role: '', token: '' }
-
-export interface Status {
-    isLogged: boolean,
-    role: string,
-    token: string
-}
-
-export const StatusContext = React.createContext<Status>(defaultStatus);
+import { Route, Routes, redirect } from "react-router-dom"
 
 export default function App() {
-    const [status, setStatus] = useState<Status>(defaultStatus);
-
-    const [isLoginPage, setPage] = useState(true);
-    const changePage = () => { setPage(!isLoginPage) }
+    const token = localStorage.getItem('token')
 
     return (
-        <StatusContext.Provider value={status}>
-            {status.isLogged ?
-                <Main {...{ status }} /> : isLoginPage ?
-                    <Login {...{ setStatus, changePage }} /> : <Registration {...{ setStatus, changePage }} />}
-        </StatusContext.Provider>
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/checkouts" element={<Checkouts />} />
+            <Route path="/*" element={
+                token ?
+                    <Books /> :
+                    <Login />
+            } />
+            {/* <Route path="/ckecout/:checkoutId" element={<Checkout />} /> */}
+            {/* <Route path="/book/:bookId" element={<Book />} /> */}
+
+            <Route path="/*" element={<h1>Error 404</h1>} />
+        </Routes>
     )
 }

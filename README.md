@@ -58,4 +58,4 @@ Database needs to be started before backend:
   year etc)
 - [X] Add support for multiple users and different user roles: reader and librarian.
 - [ ] Add backend tests
-- [ ] Containerize your application to make it cloud-native
+- [x] Containerize your application to make it cloud-native

@@ -1,11 +1,13 @@
 package com.cgi.library.service;
 
 import com.cgi.library.entity.Book;
+import com.cgi.library.entity.User;
 import com.cgi.library.model.BookDTO;
 import com.cgi.library.model.BookStatus;
 import com.cgi.library.repository.BookRepository;
 import com.cgi.library.repository.BookSpecifications;
 import com.cgi.library.repository.SpecificationBuilder;
+import com.cgi.library.repository.UserRepository;
 import com.cgi.library.util.ModelMapperFactory;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,6 +26,7 @@ import java.util.UUID;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final UserRepository userRepository;
 
     //title, author, year, genre, filter
     public Page<BookDTO> getBooks(Pageable pageable, String title, String author, String genre, Integer year, BookStatus filter) {
@@ -80,5 +83,14 @@ public class BookService {
 
     public void deleteBook(UUID bookId) {
         bookRepository.deleteById(bookId);
+    }
+
+    public void likeBook(UUID bookId, User user) {
+        System.out.println(user.getUsername());
+
+//        bookRepository.findById(bookId).ifPresent(book -> {
+//            user.getLikedBooks().add(book);
+//            userRepository.save(user);
+//        });
     }
 }

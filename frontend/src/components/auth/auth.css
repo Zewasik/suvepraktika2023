@@ -1,0 +1,82 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--primary-dark);
+}
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  box-sizing: border-box;
+  width: 25vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 45px 5px;
+  gap: 3%;
+}
+
+.form__button,
+.form__field {
+  height: 6%;
+  min-height: 40px;
+  border-radius: 12px;
+  min-width: 130px;
+
+  padding: 0 8px;
+}
+
+.form__field {
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+  color: var(--black);
+  background: var(--primary-highlight);
+}
+
+.button {
+  box-sizing: border-box;
+
+  padding: 10px;
+  border: 0;
+  border-radius: 12px;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  color: var(--black);
+  background-color: var(--secondary-highlight);
+}
+
+.form__button {
+  background: var(--secondary-highlight);
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.switch-button {
+  height: 3em;
+
+  font-size: 16px;
+
+  min-width: 115px;
+  min-height: 40px;
+
+  border: 0;
+
+  cursor: pointer;
+}
+
+.switch-button_is-disabled {
+  background-color: #7f8183;
+  cursor: default;
+}

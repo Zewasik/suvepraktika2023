@@ -1,5 +1,6 @@
 package com.cgi.library.controller;
 
+import com.cgi.library.entity.User;
 import com.cgi.library.model.BookDTO;
 import com.cgi.library.model.BookStatus;
 import com.cgi.library.service.BookService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -32,6 +34,7 @@ public class BookController {
 //            @RequestParam(value = "order", required = false) String order,
             @RequestParam(value = "filter", required = false) BookStatus filter) {
         PageRequest pr = PageRequest.of(page == null || page < 0 ? 0 : page, size == null || size < 1 ? 20 : size);
+
 //        if (sort != null) {
 //            Sort s = Sort.by(sort);
 //            if (order == "DESC") {
@@ -63,10 +66,11 @@ public class BookController {
                 .orElseGet(ResponseEntity.notFound()::build);
     }
 
-//    @PostMapping()
-//    public  ResponseEntity<> likeBook(@RequestParam(value = "bookId") UUID bookId) {
-//        return  ResponseEntity.ok(bookService.likeBook(bookId, ));
-//    }
+    @PostMapping(value = "likeBook")
+    public void likeBook(Authentication authentication, @RequestParam(value = "bookId") UUID bookId) {
+        User user = (User) authentication.getPrincipal();
+        bookService.likeBook(bookId, user);
+    }
 
     @DeleteMapping(value = "deleteBook")
     public ResponseEntity<String> deleteBook(@RequestParam(value = "bookId") UUID bookId) {

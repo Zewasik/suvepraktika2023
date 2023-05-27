@@ -1,8 +1,8 @@
 package com.cgi.library.entity;
 
 import com.cgi.library.model.BookStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,10 +10,12 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
-@Setter
 @Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
 @Table(name = "book")
 public class Book {
@@ -54,6 +56,19 @@ public class Book {
     private String comment;
 
     @OneToMany(mappedBy = "borrowedBook")
+    @ToString.Exclude
     private List<CheckOut> checkOuts = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Book book = (Book) o;
+        return getId() != null && Objects.equals(getId(), book.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

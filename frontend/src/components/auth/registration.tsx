@@ -1,14 +1,15 @@
-import "./login-registration.css"
-import { LoginProp } from './login'
+import "./auth.css"
 import { fetchHandler } from "../fetchHandler"
+import { useNavigate } from "react-router-dom"
 
 const BASE_URL = process.env.REACT_APP_HOSTNAME
 
-export default function Registration({ setStatus, changePage }: LoginProp) {
+export default function Registration() {
+    const navigate = useNavigate()
 
     return (
-        <div className="registration-page">
-            <div className="registration">
+        <div className="auth-page">
+            <div className="auth">
                 <form
                     className="form"
                     onSubmit={(e) => {
@@ -16,9 +17,18 @@ export default function Registration({ setStatus, changePage }: LoginProp) {
 
                         const form = new FormData(e.currentTarget)
                         fetchHandler(`${BASE_URL}/api/auth/register`, 'POST', { email: form.get("email"), password: form.get("password"), role: form.get("role") })
-                            .then(r => r.json())
-                            .then((r) => {
-                                setStatus({ isLogged: true, role: "READER", token: r.token })
+                            .then(r => {
+                                if (r.status === 200) {
+                                    return r.json()
+                                }
+                                throw `Request error: ${r.status}`
+                            }).then(({ token }) => {
+                                if (token) {
+                                    localStorage.setItem("token", token)
+                                    navigate("/books")
+                                    return
+                                }
+                                throw `No token in response`
                             })
                             .catch((err) => alert(err))
                     }}
@@ -41,8 +51,8 @@ export default function Registration({ setStatus, changePage }: LoginProp) {
                     <input
                         type="button"
                         className="button switch-button"
-                        onClick={() => changePage()}
                         value="Sign in"
+                        onClick={() => navigate("/login")}
                     />
                 </form>
             </div>
