@@ -1,10 +1,15 @@
+import { ReactElement } from "react";
 import { Book } from "./books";
+import { formatField } from "../../additional-functions/additional-functions";
+import React from "react";
 
 interface TableProps {
-    currentBooks: Book[],
+    book: Book[],
+    setContent: (value: ReactElement) => void
+    setActive: (value: boolean) => void
 }
 
-export default function BookTable({ currentBooks }: TableProps) {
+export default function BookTable({ book, setActive, setContent }: TableProps) {
     return (
         <table className="main-page__book-table">
             <thead>
@@ -16,8 +21,24 @@ export default function BookTable({ currentBooks }: TableProps) {
                 </tr>
             </thead>
             <tbody>
-                {currentBooks.map(book => (
-                    <tr key={book.id}>
+                {book.map((book, i) => (
+                    <tr
+                        key={i}
+                        onClick={() => {
+                            setContent(
+                                <div className="book-modal">
+                                    {Object.entries(book).map(([k, v], i) => {
+                                        if (k === "id" || k === "comment" || !v) return null
+                                        return (<React.Fragment key={i}>
+                                            <div className="book-modal__name">{formatField(k)}</div>
+                                            <div className="book-modal__value">{v}</div>
+                                        </React.Fragment>)
+                                    })}
+                                </div>
+                            )
+                            setActive(true)
+                        }}
+                    >
                         <td>{book.title}</td>
                         <td>{book.author}</td>
                         <td>{book.genre}</td>

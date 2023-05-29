@@ -4,7 +4,7 @@ import Books from "./components/books/books";
 import Checkouts from "./components/checkouts/checkouts";
 import './constants.css'
 import React from "react";
-import { Route, Routes, redirect } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 
 export default function App() {
     const token = localStorage.getItem('token')

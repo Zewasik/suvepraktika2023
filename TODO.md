@@ -7,9 +7,8 @@
 
 ## Frontend
 
-1. add individual view for books and checkouts
-2. show number of pages, bumber of elements and current page
-3. make advanced search
+1. show number of pages, bumber of elements and current page
+2. make advanced search
 
 ## Backend
 

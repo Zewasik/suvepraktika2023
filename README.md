@@ -27,13 +27,14 @@ To get React app up and running you need to:
 6. Once development server is running, open app at http://localhost:4200. If you can see a list of books then it means
    that you have successfully set up and run the application
 
-## Setting up PostgreSQL database
+## To run project via docker
 
 Database needs to be started before backend:
+
 1. Make sure you have [Docker](https://www.docker.com/) installed.
 2. Open new terminal in project root.
 3. Start docker-compose with `docker compose up`.
-4. After that you can use pgAdmin at http://localhost:5050 and start backend.
+<!-- 4. After that you can use pgAdmin at http://localhost:5050 and start backend. -->
 
 ## Front-end features
 
@@ -50,12 +51,13 @@ Database needs to be started before backend:
 - [ ] Add support for multiple users and different user roles: reader and librarian.
 
 ## Back-end features
+
 - [x] Support basic CRUD operations
 - [x] Implement searching for books using freetext criteria
 - [x] Implement filtering for books by status
 - [ ] Implement saving / displaying favorite books for current user!!!
 - [x] Implement advanced search form for books, where user can specify and combine different criterias (title, author
-  year etc)
-- [X] Add support for multiple users and different user roles: reader and librarian.
+      year etc)
+- [x] Add support for multiple users and different user roles: reader and librarian.
 - [ ] Add backend tests
 - [x] Containerize your application to make it cloud-native

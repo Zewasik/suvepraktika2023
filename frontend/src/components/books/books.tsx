@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import Filter from "./filter"
 import BookTable from "./bookTable"
-import { useNavigate } from "react-router"
+import { useLocation, useNavigate } from "react-router"
 import "./books.css"
 import { fetchHandlerWithToken } from "../fetchHandler"
+import { useModal } from "../modal/modal"
 
 const BASE_URL = process.env.REACT_APP_HOSTNAME || "http://localhost:8080"
 
@@ -35,6 +36,8 @@ const defaultResponse: Response = {
 
 export default function Books() {
     const [response, setResponse] = useState<Response>(defaultResponse)
+    const [modal, setContent, setActive] = useModal()
+    const location = useLocation()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -44,7 +47,7 @@ export default function Books() {
             return
         }
 
-        const queryParams = new URLSearchParams(window.location.search)
+        const queryParams = new URLSearchParams(location.search)
 
         fetchHandlerWithToken(`${BASE_URL}/api/book/getBooks?${queryParams.toString()}`, "GET", token)
             .then((r) => {
@@ -59,12 +62,11 @@ export default function Books() {
             }).then((r) => {
                 setResponse(r)
             }).catch((err) => alert(err))
-    }, [window.location.search])
+    }, [location.search, navigate])
 
     return (
         <div className="main-page">
             <div className="main-page__container">
-
                 <form
                     className="main-page__search"
                     onSubmit={(e) => {
@@ -72,7 +74,7 @@ export default function Books() {
 
                         const title = new FormData(e.currentTarget).get("title")
 
-                        const queryParams = new URLSearchParams(window.location.search)
+                        const queryParams = new URLSearchParams(location.search)
                         if (title !== null && title !== "") {
                             queryParams.set("title", title.toString())
                         } else {
@@ -97,7 +99,7 @@ export default function Books() {
                         className={"button switch-button" + (response.first ? " switch-button_is-disabled" : "")}
                         onClick={() => {
                             if (!response.first) {
-                                const queryParams = new URLSearchParams(window.location.search)
+                                const queryParams = new URLSearchParams(location.search)
                                 queryParams.set("page", String(response.number - 1))
 
                                 navigate(`/books?${queryParams.toString()}`)
@@ -118,7 +120,7 @@ export default function Books() {
                         className={"button switch-button" + (response.last ? " switch-button_is-disabled" : "")}
                         onClick={() => {
                             if (!response.last) {
-                                const queryParams = new URLSearchParams(window.location.search)
+                                const queryParams = new URLSearchParams(location.search)
                                 queryParams.set("page", String(response.number + 1))
 
                                 navigate(`/books?${queryParams.toString()}`)
@@ -128,9 +130,9 @@ export default function Books() {
                     />
                 </div>
                 <Filter navigate={navigate} />
-
             </div>
-            <BookTable currentBooks={response.content} />
+            {modal}
+            <BookTable setActive={setActive} setContent={setContent} book={response.content} />
         </div>
     )
 }

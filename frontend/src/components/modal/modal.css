@@ -1,0 +1,26 @@
+.modal {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal_is-hidden {
+  display: none !important;
+}
+
+.modal__content {
+  padding: 20px;
+
+  border-radius: 0.3em;
+  background-color: white;
+}

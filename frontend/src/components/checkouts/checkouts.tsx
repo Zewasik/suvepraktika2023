@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Book } from "../books/books";
 import CheckoutTable from "./checkoutTable";
 import { fetchHandlerWithToken } from "../fetchHandler";
+import { useModal } from "../modal/modal";
 
 const BASE_URL = process.env.REACT_APP_HOSTNAME || "http://localhost:8080"
 
@@ -31,6 +32,8 @@ const defaultResponse: Response = {
 
 export default function Checkouts() {
     const [response, setResponse] = useState<Response>(defaultResponse)
+    const [modal, setContent, setActive] = useModal()
+    const location = useLocation()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -40,7 +43,7 @@ export default function Checkouts() {
             return
         }
 
-        const queryParams = new URLSearchParams(window.location.search)
+        const queryParams = new URLSearchParams(location.search)
 
         fetchHandlerWithToken(`${BASE_URL}/api/checkout/getCheckouts?${queryParams.toString()}`, "GET", token)
             .then((r) => {
@@ -55,7 +58,7 @@ export default function Checkouts() {
             }).then((r) => {
                 setResponse(r)
             }).catch((err) => alert(err))
-    }, [window.location.search])
+    }, [location.search])
 
     return (
         <div className="main-page">
@@ -66,7 +69,7 @@ export default function Checkouts() {
                         className={"button switch-button" + (response.first ? " switch-button_is-disabled" : "")}
                         onClick={() => {
                             if (!response.first) {
-                                const queryParams = new URLSearchParams(window.location.search)
+                                const queryParams = new URLSearchParams(location.search)
                                 queryParams.set("page", String(response.number - 1))
 
                                 navigate(`/checkouts?${queryParams.toString()}`)
@@ -88,7 +91,7 @@ export default function Checkouts() {
                         className={"button switch-button" + (response.last ? " switch-button_is-disabled" : "")}
                         onClick={() => {
                             if (!response.last) {
-                                const queryParams = new URLSearchParams(window.location.search)
+                                const queryParams = new URLSearchParams(location.search)
                                 queryParams.set("page", String(response.number + 1))
 
                                 navigate(`/checkouts?${queryParams.toString()}`)
@@ -98,7 +101,8 @@ export default function Checkouts() {
                     />
                 </div>
             </div>
-            <CheckoutTable checkouts={response.content} />
+            {modal}
+            <CheckoutTable setActive={setActive} setContent={setContent} checkouts={response.content} />
         </div>
     )
 }

@@ -24,7 +24,7 @@ export default function Filter({ navigate }: FilterProps) {
                 navigate(`/books?${queryParams.toString()}`)
             }} className="form__field filter">
                 <option value={"DEFAULT"}>Default</option>
-                <option value={"AVALIABLE"}>Avaliable</option>
+                <option value={"AVAILABLE"}>Available</option>
                 <option value={"BORROWED"}>Borrowed</option>
                 <option value={"RETURNED"}>Returned</option>
                 <option value={"DAMAGED"}>Damaged</option>
